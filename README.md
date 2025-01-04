@@ -7,19 +7,36 @@ A comprehensive PowerShell automation solution for deploying and organizing Acti
 
 ## 🌟 Features
 
-- **Interactive AD DS Installation**: Guided setup process for installing and configuring Active Directory Domain Services
-- **Automated OU Organization**: Create and manage organizational units with predefined or custom structures
+### AD DS Installation
+- **Interactive Setup**: Guided process for installing and configuring Active Directory Domain Services
 - **Safe Mode Recovery**: Built-in Directory Services Restore Mode (DSRM) password configuration
 - **DNS Integration**: Automatic DNS server installation and configuration
 - **Flexible Configuration**: Customizable domain names, NetBIOS names, and directory paths
 
+### OU Organization
+- **Hierarchical Structure**: Create multi-level organizational unit hierarchies
+- **Location-Based Organization**: Support for multiple geographical locations
+- **Department Management**: Easy creation of department-specific OUs
+- **Server Environment Organization**: Separate OU structure for different server environments
+- **Duplicate Prevention**: Built-in checks to prevent OU naming conflicts
+- **Interactive Creation**: User-friendly prompts for OU naming and structure
+
 ## 🚀 Benefits
 
+### Efficiency
 - **Time Savings**: Reduce deployment time from hours to minutes
+- **Automated Structure**: Create complex OU hierarchies in minutes
+- **Batch Creation**: Create multiple OUs across locations simultaneously
+
+### Quality & Consistency
 - **Error Prevention**: Interactive prompts and validation prevent common configuration mistakes
-- **Standardization**: Ensure consistent AD deployment across multiple environments
+- **Standardization**: Ensure consistent AD structure across locations
 - **Best Practices**: Implements Microsoft-recommended configurations by default
-- **Flexibility**: Easy customization for different organizational needs
+
+### Flexibility & Maintenance
+- **Adaptable Structure**: Easy customization for different organizational needs
+- **Scalable Design**: Add new locations and departments as needed
+- **Clear Organization**: Logical separation of clients and servers
 - **Documentation**: Well-documented code for easy maintenance and modifications
 
 ## 📋 Prerequisites
@@ -68,7 +85,46 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ### OU Organization Script
 
-[Add specific instructions for your OU organization script here]
+1. Run the OU organization script as administrator:
+```powershell
+.\Organize-OUs.ps1
+```
+
+2. The script will guide you through creating a hierarchical OU structure:
+   - First, enter location names (e.g., "NewYork", "London", "Tokyo")
+   - For each location, the script creates two main OUs:
+     - **Clients**: For organizing department-specific OUs
+     - **Servers**: For organizing server environment OUs
+   
+3. For each location, you can:
+   - Add multiple departments under the Clients OU
+   - Add multiple server environments under the Servers OU
+   - Press Enter without input to move to the next section
+
+Example structure created:
+```
+Domain
+├── Location1
+│   ├── OU_Clients
+│   │   ├── HR
+│   │   ├── Finance
+│   │   └── IT
+│   └── OU_Servers
+│       ├── Production
+│       ├── Development
+│       └── Testing
+└── Location2
+    ├── OU_Clients
+    │   └── ...
+    └── OU_Servers
+        └── ...
+```
+
+The script includes built-in checks to:
+- Prevent duplicate OU creation
+- Validate OU names
+- Provide feedback on creation status
+- Handle existing OUs gracefully
 
 ## 🏗️ Default Configuration
 
