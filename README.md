@@ -144,7 +144,6 @@ Domain functional level: Windows Server 2016 (WinThreshold)
 ## 🔒 Security Considerations
 
 - Use strong passwords for DSRM
-- Follow the principle of least privilege
 - Regular backup of AD database
 - Monitor event logs after installation
 - Implement proper Group Policy Objects (GPOs)
