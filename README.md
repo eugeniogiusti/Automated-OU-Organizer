@@ -148,7 +148,9 @@ Domain functional level: Windows Server 2016 (WinThreshold)
 - Monitor event logs after installation
 - Implement proper Group Policy Objects (GPOs)
 
-## 🔒 Screenshoot
+## 📸  Screenshoot
+
+### OU Organizer
 
 ![image](https://github.com/user-attachments/assets/825ef86f-7a7d-4dd0-bccc-c2b4296d9505)
 
