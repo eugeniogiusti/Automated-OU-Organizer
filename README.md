@@ -35,15 +35,15 @@ This PowerShell script allows the interactive creation and organization of Activ
 - **Clear Organization**: Logical separation of clients and servers
 - **Documentation**: Well-documented code for easy maintenance and modifications
 
-## 📋 Prerequisites
+## 📋 Prerequisites for a virtual machine
 
 - Windows Server 2016 or later
 - PowerShell 5.1 or later
 - Administrator privileges
 - Minimum system requirements for AD DS:
-  - 2GB RAM (4GB recommended)
-  - 32GB available disk space
-  - x64 processor
+  - 4GB RAM (8GB recommended)
+  - 60GB available disk space (120GB recommended)
+  - Dual virtual cpu x64 processor (quad recommended)
 
 ## 🛠️ Installation
 
