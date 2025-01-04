@@ -1,64 +1,67 @@
-# Interactive script to install Active Directory Domain Services (AD DS)
+# Function to read non-empty input (requires domain name)
+function Read-NonEmptyInput {
+    param (
+        [string]$prompt,
+        [string]$default
+    )
 
-# Check if the script is running with administrator privileges
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Host "This script must be run with administrator privileges." -ForegroundColor Red
-    exit
+    $input = Read-Host "$prompt (default: $default)"
+    if ([string]::IsNullOrWhiteSpace($input)) {
+        $input = $default
+    }
+    return $input
 }
 
-# Function to read user input
-function Read-Input($prompt, $default = "") {
-    if ($default -ne "") {
-        $prompt += " [$default]: "
-    } else {
-        $prompt += ": "
-    }
-    $input = Read-Host $prompt
-    if ($input -eq "" -and $default -ne "") {
-        return $default
-    } else {
-        return $input
-    }
+# Function to obtain secure password
+function Get-SecurePassword {
+    param (
+        [string]$prompt
+    )
+    Write-Host $prompt -ForegroundColor Yellow
+    $password = Read-Host -AsSecureString
+    return $password
 }
 
+# Ask domain
+$domainName = Read-NonEmptyInput "Enter the domain name" "mycompany.local"
 
-# Install the AD DS role
-Write-Host "Installing the Active Directory Domain Services role..." -ForegroundColor Green
-Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools -Verbose
+# Ask netbios
+$netbiosName = Read-NonEmptyInput "Enter the NetBIOS name (leave blank for default)" ""
 
-Write-Host "The role was successfully installed." -ForegroundColor Green
+# Ask password for Directory Services Restore Mode (DSRM)
+$dsrmPassword = Get-SecurePassword "Enter the password for Directory Services Restore Mode (DSRM)"
 
-# Prompt for new forest and domain creation details
-$domainName = Read-Input "Enter the domain name (e.g., example.com)"
-$netbiosName = Read-Input "Enter the NetBIOS name (leave blank for default)" ""
+# Level of functionality
+$domainFunctionalLevel = "Win2016" # Impostazione predefinita a Windows Server 2016
 
-# Securely prompt for the Directory Services Restore Mode (DSRM) password
-Write-Host "Enter the password for Directory Services Restore Mode (DSRM):" -ForegroundColor Yellow
-$securePassword = Read-Host -AsSecureString
+# Configure path of database, log and SYSVOL (default C:\Windows)
+$databasePath = "C:\Windows\NTDS"
+$logPath = "C:\Windows\NTDS"
+$sysvolPath = "C:\Windows\SYSVOL"
 
-# Confirm the domain functional level
-$domainLevel = "WinThreshold"
-Write-Host "The domain functional level will be set to Windows Server 2016 (default)." -ForegroundColor Yellow
-
-# Configure the new forest and domain
-Write-Host "Configuring the new forest and domain..." -ForegroundColor Green
-$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
-
-# Define installation parameters
+# Argoments installation AD
 $installArgs = @{
-    DomainName         = $domainName
-    DomainNetBIOSName  = if ($netbiosName -eq "") { $domainName.Split('.')[0].ToUpper() } else { $netbiosName.ToUpper() }
-    DatabasePath       = "C:\Windows\NTDS"       # Default path for the AD database
-    LogPath            = "C:\Windows\NTDS"       # Default path for AD logs
-    SysvolPath         = "C:\Windows\SYSVOL"     # Default path for SYSVOL
-    SafeModeAdministratorPassword = $securePassword
-    Force              = $true
-    NoRebootOnCompletion = $true
-    InstallDNS         = $true                   # Install the DNS server
-    CreateDNSDelegation = $false                 # Disable DNS delegation
+    DomainName                   = $domainName
+    DomainNetBIOSName            = if ($netbiosName -eq "") { $domainName.Split('.')[0].ToUpper() } else { $netbiosName.ToUpper() }
+    DatabasePath                 = $databasePath
+    LogPath                      = $logPath
+    SysvolPath                   = $sysvolPath
+    SafeModeAdministratorPassword = $dsrmPassword
+    Force                        = $true
+    NoRebootOnCompletion         = $true
+    InstallDNS                   = $true                   # Install DNS
+    CreateDNSDelegation          = $false                  # Disable delegation DNS
+    DomainMode                   = $domainFunctionalLevel # Domain functionality
 }
 
-# Run the AD DS installation
-Install-ADDSForest @installArgs
+# Install Active Directory Domain Services
+try {
+    Write-Host "Starting the Active Directory Domain Services installation..." -ForegroundColor Green
+    Install-ADDSForest @installArgs
+    Write-Host "Installation completed successfully." -ForegroundColor Green
+}
+catch {
+    Write-Host "Error during installation: $_" -ForegroundColor Red
+}
 
-Write-Host "Configuration completed. Restart the system to finalize the installation." -ForegroundColor Green
+# Note: Please reboot the system
