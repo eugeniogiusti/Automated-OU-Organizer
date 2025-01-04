@@ -1,10 +1,6 @@
 # Automated-OU-Organizer
 This PowerShell script allows the interactive creation and organization of Active Directory Organizational Units (OUs), making it easy to manage complex domain structures. Perfect for IT admins looking to automate and standardize OU management.
 
-# Automated-OU-Organizer
-
-A comprehensive PowerShell automation solution for deploying and organizing Active Directory Domain Services (AD DS). This repository contains scripts that streamline the process of setting up AD DS and creating a well-structured organizational unit hierarchy.
-
 ## 🌟 Features
 
 ### AD DS Installation
