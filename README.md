@@ -49,7 +49,7 @@ This PowerShell script allows the interactive creation and organization of Activ
 
 1. Clone the repository:
 ```powershell
-git clone https://github.com/YourUsername/Automated-OU-Organizer.git
+git clone https://github.com/eugeniogiusti/Automated-OU-Organizer.git
 ```
 
 2. Navigate to the script directory:
@@ -68,7 +68,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 1. Run the AD DS installation script as administrator:
 ```powershell
-.\Install-ADDS.ps1
+.\Install_AD.ps1
 ```
 
 2. Follow the interactive prompts to configure:
@@ -83,7 +83,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 1. Run the OU organization script as administrator:
 ```powershell
-.\Organize-OUs.ps1
+.\OUAutoBuilder.ps1
 ```
 
 2. The script will guide you through creating a hierarchical OU structure:
@@ -150,24 +150,3 @@ Domain functional level: Windows Server 2016 (WinThreshold)
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📧 Contact
-
-Your Name - [Your Email]
-Project Link: [https://github.com/YourUsername/Automated-OU-Organizer](https://github.com/YourUsername/Automated-OU-Organizer)
-
-## 🙏 Acknowledgments
-
-- Microsoft Active Directory documentation
-- PowerShell community
-- All contributors who help improve this project
