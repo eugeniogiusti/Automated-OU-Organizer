@@ -67,8 +67,8 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ### AD DS Installation Script
 
-1. Run the AD DS installation script as administrator:
-2. NOTE: Before running this script, make sure to configure a static IP address with a subnet mask, gateway address, and set itself as the DNS server. Then, change the hostname to "DC01" or something similar so it can be easily recognized on the network as a Domain Controller. After completing these steps, restart the machine and then execute this script.
+1. NOTE: Before running this script, make sure to configure a static IP address with a subnet mask, gateway address, and set itself as the DNS server. Then, change the hostname to "DC01" or something similar so it can be easily recognized on the network as a Domain Controller. After completing these steps, restart the machine and then execute this script.
+2. Run the AD DS installation script as administrator:
 ```powershell
 .\Install_AD.ps1
 ```
