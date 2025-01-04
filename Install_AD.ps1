@@ -31,7 +31,10 @@ Write-Host "The role was successfully installed." -ForegroundColor Green
 # Prompt for new forest and domain creation details
 $domainName = Read-Input "Enter the domain name (e.g., example.com)"
 $netbiosName = Read-Input "Enter the NetBIOS name (leave blank for default)" ""
-$password = Read-Input "Enter the password for Directory Services Restore Mode (DSRM)"
+
+# Securely prompt for the Directory Services Restore Mode (DSRM) password
+Write-Host "Enter the password for Directory Services Restore Mode (DSRM):" -ForegroundColor Yellow
+$securePassword = Read-Host -AsSecureString
 
 # Confirm the domain functional level
 $domainLevel = "WinThreshold"
