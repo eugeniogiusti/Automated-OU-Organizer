@@ -14,8 +14,13 @@ function Read-Input($prompt, $default = "") {
         $prompt += ": "
     }
     $input = Read-Host $prompt
-    return if ($input -eq "" -and $default -ne "") { $default } else { $input }
+    if ($input -eq "" -and $default -ne "") {
+        return $default
+    } else {
+        return $input
+    }
 }
+
 
 # Install the AD DS role
 Write-Host "Installing the Active Directory Domain Services role..." -ForegroundColor Green
