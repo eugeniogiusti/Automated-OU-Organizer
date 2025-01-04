@@ -58,7 +58,7 @@ Or download directly the zip file on your server
 cd Automated-OU-Organizer
 ```
 
-3. Ensure you have the necessary permissions (Select A):
+3. Ensure you have the necessary permissions (Select A when required):
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
