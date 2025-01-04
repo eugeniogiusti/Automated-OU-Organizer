@@ -43,7 +43,7 @@ This PowerShell script allows the interactive creation and organization of Activ
 - Minimum system requirements for AD DS:
   - 4GB RAM (8GB recommended)
   - 60GB available disk space (120GB recommended)
-  - Dual virtual cpu x64 processor (quad recommended)
+  - Dual virtual cpu (quad recommended)
 
 ## 🛠️ Installation
 
