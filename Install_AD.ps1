@@ -1,59 +1,58 @@
-# Script per l'installazione automatizzata di Active Directory Domain Services
-# Richiede privilegi di amministratore per essere eseguito
+# Installation of Active Directory Domain Services
 
-# Funzione per verificare se lo script è eseguito come amministratore
+# Function verify Admin permissions
 function Test-Administrator {
     $currentUser = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
     $currentUser.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
-# Verifica privilegi amministrativi
+# Verify Administrative privilege
 if (-not (Test-Administrator)) {
-    Write-Error "Lo script deve essere eseguito come amministratore!"
+    Write-Error "Admin privilege to execute the script!"
     Exit 1
 }
 
-# Funzione per validare il nome del dominio
+# Function domain_name
 function Test-DomainName {
     param([string]$DomainName)
     return $DomainName -match "^[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9](\.[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])*$"
 }
 
-# Richiesta parametri all'utente
+# Request parameters
 do {
-    $domainName = Read-Host "Inserisci il nome del dominio (es. contoso.local)"
+    $domainName = Read-Host "Insert your domain name (es. contoso.local)"
 } while (-not (Test-DomainName $domainName))
 
 do {
-    $netbiosName = Read-Host "Inserisci il nome NetBIOS del dominio (max 15 caratteri)"
+    $netbiosName = Read-Host "Insert your NetBios name (max 15 caracthers)"
 } while ($netbiosName.Length -gt 15 -or $netbiosName.Length -eq 0)
 
-$safeModePassword = Read-Host "Inserisci la password per la modalità provvisoria (DSRM)" -AsSecureString
-$confirmPassword = Read-Host "Conferma la password per la modalità provvisoria (DSRM)" -AsSecureString
+$safeModePassword = Read-Host "Insert your passowrd for DSRM" -AsSecureString
+$confirmPassword = Read-Host "Confirm password for DSRM" -AsSecureString
 
 $pwdString = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($safeModePassword))
 $confirmString = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($confirmPassword))
 
 if ($pwdString -ne $confirmString) {
-    Write-Error "Le password non corrispondono!"
+    Write-Error "Password doesn't match!"
     Exit 1
 }
 
-# Installazione del ruolo AD DS
+# Installation AD DS
 try {
-    Write-Host "Installazione del ruolo Active Directory Domain Services..."
+    Write-Host "Installation Active Directory Domain Services..."
     Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
-    # Verifica che l'installazione sia andata a buon fine
+    # Verify of that
     $addsFeature = Get-WindowsFeature -Name AD-Domain-Services
     if (-not $addsFeature.Installed) {
-        throw "Installazione del ruolo AD DS fallita!"
+        throw "Failure AD  DS installation!"
     }
 
-    Write-Host "Configurazione del nuovo dominio..."
+    Write-Host "Configuring new domain..."
     Import-Module ADDSDeployment
 
-    # Configurazione del nuovo dominio
+    # Configuration new domain
     $params = @{
         CreateDnsDelegation = $false
         DatabasePath = "C:\Windows\NTDS"
@@ -71,9 +70,9 @@ try {
 
     Install-ADDSForest @params
 
-    Write-Host "Installazione completata con successo! Il server verrà riavviato automaticamente."
+    Write-Host "Installation complete! The server is gonna be rebooting automatically."
 }
 catch {
-    Write-Error "Si è verificato un errore durante l'installazione: $_"
+    Write-Error "Error: $_"
     Exit 1
 }
