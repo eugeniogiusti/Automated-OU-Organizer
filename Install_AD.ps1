@@ -65,3 +65,4 @@ catch {
 }
 
 # Note: Please reboot the system
+Write-Host "Reboot the system to apply changes." -ForegroundColor Cyan
