@@ -60,7 +60,6 @@ cd Automated-OU-Organizer
 
 3. Ensure you have the necessary permissions (Select A when required):
 ```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
@@ -76,13 +75,12 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 2. Follow the interactive prompts to configure:
    - Domain name
-   - NetBIOS name (optional)
+   - NetBIOS name
    - DSRM password
-   - Directory paths (optional)
 
-3. Wait for the installation to complete and restart when prompted
+3. After the installation the server is gonna reboot automatically
 
-### OU Organization Script
+### Next step OU Organization Script
 
 1. Run the OU organization script as administrator:
 ```powershell
