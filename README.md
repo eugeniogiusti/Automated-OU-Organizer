@@ -47,10 +47,9 @@ This PowerShell script allows the interactive creation and organization of Activ
 
 ## 🛠️ Installation
 
-1. Clone the repository:
+1. Clone the repository or download directly the zip file on your server:
 ```powershell
 git clone https://github.com/eugeniogiusti/Automated-OU-Organizer.git
-Or download directly the zip file on your server
 ```
 
 2. Navigate to the script directory:
