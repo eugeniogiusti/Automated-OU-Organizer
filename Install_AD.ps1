@@ -1,4 +1,4 @@
-# Installation of Active Directory Domain Services
+# Installation of Active Directory
 
 # Function verify Admin permissions
 function Test-Administrator {
