@@ -77,7 +77,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
    - NetBIOS name
    - DSRM password
 
-3. After the installation the server is gonna reboot automatically
+3. After the installation the server is going to reboot automatically
 
 ### Next step OU Organization Script
 
