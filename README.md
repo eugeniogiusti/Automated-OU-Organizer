@@ -54,7 +54,7 @@ git clone https://github.com/eugeniogiusti/Automated-OU-Organizer.git
 
 2. Navigate to the script directory:
 ```powershell
-cd Automated-OU-Organizer
+cd Automated-OU-Organizer-main
 ```
 
 3. Ensure you have the necessary permissions (Select A when required):
