@@ -149,7 +149,7 @@ Domain functional level: Windows Server 2016 (WinThreshold)
 
 ## 📸  Screenshoot
 
-### OU Organizer
+### OU Organizer execution and result
 
 ![image](https://github.com/user-attachments/assets/825ef86f-7a7d-4dd0-bccc-c2b4296d9505)
 
