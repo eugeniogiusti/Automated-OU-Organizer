@@ -148,6 +148,13 @@ Domain functional level: Windows Server 2016 (WinThreshold)
 
 ## 📸  Screenshoot
 
+### AD installer
+
+![image](https://github.com/user-attachments/assets/c91eefcd-98c4-4ac2-8a55-17573a01aeb2)
+
+![image](https://github.com/user-attachments/assets/10ef42b4-4168-4d57-8281-26203fb8b96b)
+
+
 ### OU Organizer execution and result
 
 ![image](https://github.com/user-attachments/assets/825ef86f-7a7d-4dd0-bccc-c2b4296d9505)
