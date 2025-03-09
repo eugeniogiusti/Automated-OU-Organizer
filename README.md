@@ -27,7 +27,7 @@ This PowerShell script allows the interactive creation and organization of Activ
 ### Quality & Consistency
 - **Error Prevention**: Interactive prompts and validation prevent common configuration mistakes
 - **Standardization**: Ensure consistent AD structure across locations
-- **Best Practices**: Implements Microsoft-recommended configurations by default
+- **Best Practices**: Implements Microsoft recommended configurations by default
 
 ### Flexibility & Maintenance
 - **Adaptable Structure**: Easy customization for different organizational needs
