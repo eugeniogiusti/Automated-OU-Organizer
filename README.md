@@ -166,3 +166,13 @@ Domain functional level: Windows Server 2016 (WinThreshold)
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+# Automated OU Organizer
+
+![Status](https://img.shields.io/badge/status-stable-brightgreen)
+![Last Commit](https://img.shields.io/github/last-commit/eugeniogiusti/Automated-OU-Organizer)
+![License](https://img.shields.io/github/license/eugeniogiusti/Automated-OU-Organizer)
+![Top Language](https://img.shields.io/github/languages/top/eugeniogiusti/Automated-OU-Organizer)
+![Stars](https://img.shields.io/github/stars/eugeniogiusti/Automated-OU-Organizer?style=social)
+![PowerShell](https://img.shields.io/badge/made%20with-PowerShell-blue)
+
